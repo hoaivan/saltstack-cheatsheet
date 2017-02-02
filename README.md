@@ -255,6 +255,10 @@ Installing a local formula
 ```
 spm local install /srv/spm/apache-201506-1.spm
 ```
+Building a formula
+```
+spm build /path/to/saltstack-formulas/apache-formula
+```
 After repository configuration, you need to update the metadata placed on `/var/cache/salt/spm`
 ```
 spm update_repo
