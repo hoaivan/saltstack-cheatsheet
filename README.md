@@ -58,7 +58,9 @@ salt '*' test.ping      # Use test module to check if minion is up and respondin
 Apply a specific state file to a (group of..) minion(s). Do not use the .sls extension. (just like in the state files!)
 
 ```
-salt '*' state.sls mystatefile           # mystatefile.sls will be applied to *
+salt 'minion1' state.highstate			# Apply hihgstate over matching minions
+salt 'minion1' state.show_sls some_sls	# Parse and show SLS file
+salt '*' state.sls mystatefile          # mystatefile.sls will be applied to *
 salt 'minion1' state.sls prod.somefile  # prod/somefile.sls will be applied to minion1
 ```
 
@@ -79,6 +81,13 @@ Manipulate grains.
 salt 'minion1' grains.setval mygrain True  # Set mygrain to True (create if it doesn't exist yet)
 salt 'minion1' grains.delval mygrain       # Delete the value of the grain
 ```
+Manipulate pillars`.
+```
+salt 'minion1' pillar.get pillar	# Get pillar
+salt 'minion1' pillar.item pillar	# Print pillar items
+salt 'minion1' pillar.ls			# Show available main kays
+salt '*' saltutil.refresh_pillar	# Reload pillars
+```
 
 # Jobs in Salt
 Some jobs operations that are often used. (http://docs.saltstack.com/en/latest/topics/jobs/)
@@ -93,6 +102,7 @@ Some stuff that is specifically of interest for sysadmins.
 
 ## System and status
 ```
+salt 'minion-x-*' cmd.run 'command' # Run command on minions
 salt 'minion-x-*' system.reboot  # Let's reboot all the minions that match minion-x-*
 salt '*' status.uptime           # Get the uptime of all our minions
 ```
