@@ -59,6 +59,14 @@ Apply a specific state file to a (group of..) minion(s). Do not use the .sls ext
 salt '*' state.sls mystatefile          # mystatefile.sls will be applied to *
 salt 'minion1' state.sls prod.somefile  # prod/somefile.sls will be applied to minion1
 ```
+Apply a state in *debug* mode
+```
+salt '*' state.apply state -l debug
+```
+Test a SLS before apply and print only differences (`--output-diff`)
+```
+salt '\*' state.apply state test=true --output-diff
+```
 Or bring the specified target to the *highstate*
 ```
 salt 'minion1' state.highstate          # Apply hihgstate over matching minions
