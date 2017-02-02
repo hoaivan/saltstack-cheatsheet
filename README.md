@@ -143,9 +143,11 @@ salt '*' pkg.install bash refresh=True  # install or upgrade bash package but
 ```
 salt '*' service.status <service name>
 salt '*' service.available <service name>
+salt '*' service.enable <service name>
 salt '*' service.start <service name>
 salt '*' service.restart <service name>
 salt '*' service.stop <service name>
+salt '*' service.disable <service name>
 ```
 
 ## Network
