@@ -104,8 +104,8 @@ salt 'minion1' grains.delval mygrain       # Delete the value of the grain
 ## Pillars
 Look at pillars and get values
 ```
-salt 'minion1' pillar.get pillar	      # Get pillar
-salt 'minion1' pillar.item pillar	      # Print pillar items
+salt 'minion1' pillar.get pillar        # Get pillar
+salt 'minion1' pillar.item pillar       # Print pillar items
 salt 'minion1' pillar.ls                # Show available main keys
 
 salt '*' pillar.get pkg:apache          # Show pkg:apache pillar
@@ -153,12 +153,13 @@ salt '*' status.uptime                # Get the uptime of all our minions
 ```
 Or work with process and check filesystems
 ```
-salt '*' ps.num_cpus                  # List number of CPU in the minion
-salt '*' ps.disk_usage /home	        # Print disk usage for /home partition
-salt '*' ps.disk_partitions		        # Return a list of disk partitions and their device, mount point, and filesystem type.
-salt '*' ps.get_users			            # Return logged users
-salt 'minion' ps.kill_pid pid [signal=signal_number] # Send kill signal to an specific PID
-salt '*' ps.psaux www-data.+apache2	  # Return process matching with the string
+salt '*' ps.num_cpus                                  # List number of CPU in the minion
+salt '*' ps.disk_usage /home                          # Print disk usage for /home partition
+salt '*' ps.disk_partitions                           # Return a list of disk partitions and their device, 
+                                                      # mount point, and filesystem type.
+salt '*' ps.get_users                                 # Return logged users
+salt 'minion' ps.kill_pid pid [signal=signal_number]  # Send kill signal to an specific PID
+salt '*' ps.psaux www-data.+apache2                   # Return process matching with the string
 ```
 
 ## Packages
@@ -239,7 +240,7 @@ salt-key -R		        # Reject ALL public keys
 salt-key -p		        # Print the specified public key
 salt-key -P		        # Print all public keys
 salt-key -d 'minion1' # Delete minion1 public key
-salt-key -D 	        # Delete ALL public keys
+salt-key -D           # Delete ALL public keys
 salt-key -f master    # Get the public signature for your local master
 ```
 # SPM
