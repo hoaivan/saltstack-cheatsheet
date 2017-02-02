@@ -12,6 +12,16 @@ In order to run, Salt needs to keep open the following communication ports
 * Job publisher port on TCP 4505 port. 
 * An open TCP 4506 port to minion's return.
 
+### iptables rules
+```
+iptables -A INPUT -m state --state new -m tcp -p tcp --dport 4505 -j ACCEPT
+iptables -A INPUT -m state --state new -m tcp -p tcp --dport 4506 -j ACCEPT
+```
+Persist across system restart
+```
+iptables-save > /etc/iptables.rules
+```
+
 ## Documentation on the system
 ```
 salt '*' sys.doc         # output sys.doc (= all documentation)
