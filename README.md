@@ -38,7 +38,7 @@ salt '*' test.ping      # Use test module to check if minion is up and respondin
 Apply a specific state file to a (group of..) minion(s). Do not use the .sls extension. (just like in the state files!)
 
 ```
-salt 'minion1' state.highstate			# Apply hihgstate over matching minions
+salt 'minion1' state.highstate			    # Apply hihgstate over matching minions
 salt 'minion1' state.show_sls some_sls	# Parse and show SLS file
 salt '*' state.sls mystatefile          # mystatefile.sls will be applied to *
 salt 'minion1' state.sls prod.somefile  # prod/somefile.sls will be applied to minion1
@@ -62,21 +62,22 @@ salt 'minion1' grains.setval mygrain True  # Set mygrain to True (create if it d
 salt 'minion1' grains.delval mygrain       # Delete the value of the grain
 ```
 
-Manipulate pillars
+## Pillars
+Look at pillars and get values
 ```
-salt 'minion1' pillar.get pillar	# Get pillar
-salt 'minion1' pillar.item pillar	# Print pillar items
-salt 'minion1' pillar.ls			# Show available main keys
-salt '*' pillar.get pkg:apache		# Show pkg:apache pillar
+salt 'minion1' pillar.get pillar	      # Get pillar
+salt 'minion1' pillar.item pillar	      # Print pillar items
+salt 'minion1' pillar.ls			          # Show available main keys
+salt '*' pillar.get pkg:apache		      # Show pkg:apache pillar
 salt '*' pillar.file_exists foo/bar.sls # Return true if pillar file exist
-salt '*' saltutil.refresh_pillar	# Reload pillars
+salt '*' saltutil.refresh_pillar	      # Reload pillars
 ```
 
 # Jobs in Salt
 Some jobs operations that are often used. (http://docs.saltstack.com/en/latest/topics/jobs/)
 ```
-salt-run jobs.active      # get list of active jobs
-salt-run jobs.list_jobs   # get list of historic jobs
+salt-run jobs.active                      # get list of active jobs
+salt-run jobs.list_jobs                   # get list of historic jobs
 salt-run jobs.lookup_jid <job id number>  # get details of this specific job
 ```
 
@@ -85,27 +86,27 @@ Some stuff that is specifically of interest for sysadmins.
 
 ## System and status
 ```
-salt 'minion-x-*' cmd.run 'command' # Run command on minions
-salt 'minion-x-*' system.reboot  # Let's reboot all the minions that match minion-x-*
-salt '*' status.uptime           # Get the uptime of all our minions
-salt '*' ps.disk_usage /home	 # Print disk usage for /home partition
-salt '*' ps.disk_partitions		 # Return a list of disk partitions and their device, mount point, and filesystem type.
-salt '*' ps.get_users			 # Return logged users
+salt 'minion-x-*' cmd.run 'command'   # Run command on minions
+salt 'minion-x-*' system.reboot       # Let's reboot all the minions that match minion-x-*
+salt '*' status.uptime                # Get the uptime of all our minions
+salt '*' ps.disk_usage /home	        # Print disk usage for /home partition
+salt '*' ps.disk_partitions		        # Return a list of disk partitions and their device, mount point, and filesystem type.
+salt '*' ps.get_users			            # Return logged users
 salt 'minion' ps.kill_pid pid [signal=signal_number] # Send kill signal to an specific PID
-salt '*' ps.psaux www-data.+apache2	# Return process matching with the string
+salt '*' ps.psaux www-data.+apache2	  # Return process matching with the string
 
 
 ```
 
 ## Packages
 ```
-salt '*' pkg.list_upgrades             # get a list of packages that need to be upgrade
-salt '*' pkg.upgrade                   # Upgrades all packages via apt-get dist-upgrade (or similar)
+salt '*' pkg.list_upgrades              # get a list of packages that need to be upgrade
+salt '*' pkg.upgrade                    # Upgrades all packages via apt-get dist-upgrade (or similar)
 
-salt '*' pkg.version bash              # get current version of the bash package
-salt '*' pkg.install bash              # install or upgrade bash package
-salt '*' pkg.install bash refresh=True # install or upgrade bash package but
-                                      # refresh the package database before installing.
+salt '*' pkg.version bash               # get current version of the bash package
+salt '*' pkg.install bash               # install or upgrade bash package
+salt '*' pkg.install bash refresh=True  # install or upgrade bash package but
+                                        # refresh the package database before installing.
 ```
 
 ## Check status of a service and manipulate services
@@ -122,11 +123,11 @@ salt '*' service.stop <service name>
 Do some network stuff on your minions.
 
 ```
-salt 'minion1' network.ip_addrs          # Get IP of your minion
-salt 'minion1' network.ping <hostname>   # Ping a host from your minion
-salt 'minion1' network.traceroute <hostname>   # Traceroute a host from your minion
-salt 'minion1' network.get_hostname      # Get hostname
-salt 'minion1' network.mod_hostname      # Modify hostname
+salt 'minion1' network.ip_addrs                 # Get IP of your minion
+salt 'minion1' network.ping <hostname>          # Ping a host from your minion
+salt 'minion1' network.traceroute <hostname>    # Traceroute a host from your minion
+salt 'minion1' network.get_hostname             # Get hostname
+salt 'minion1' network.mod_hostname             # Modify hostname
 ```
 
 # Salt Cloud
