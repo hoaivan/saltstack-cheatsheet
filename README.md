@@ -140,3 +140,37 @@ salt-cloud -d my-vm-name                      # destroy the my-vm-name virtual m
 salt-cloud -u                                 # Update salt-bootstrap to latest develop version on GitHub.
 ```
 
+# Salt keys
+Accept or deny a minion to connecting master based on the public key.
+* *RSA keys* used for authentication.
+* *AES key* usad for encryption
+
+The AES key is changed every *24 hours* by default or when a minion has been deleted.
+
+Salt minion keys can be in one of the following states:
+
+* **unaccepted:** key is waiting to be accepted.
+* **accepted:** key was accepted and the minion can communicate with the Salt master.
+* **rejected:** key was rejected using the salt-key command. In this state the minion does not receive any communication from the Salt master.
+* **denied:** key was rejected automatically by the Salt master. This occurs when a minion has a duplicate ID, or when a minion was rebuilt or had new keys generated and the previous key was not deleted from the Salt master. In this state the minion does not receive any communication from the Salt master.
+
+To change the state of a minion key, use -d to delete the key and then accept or reject the key.
+
+The `pki_dir` is a configurable directory on `/etc/salt/pki/minion/`. The `minions` directory contains:
+* `accepted minion` keys.
+* `minions_pre` pending acceptance keys
+* `minions_rejected` keys which have been rejected
+
+```
+salt-key -l 	# List the public keys
+salt-key -L 	# List all public keys 
+salt-key -a 'minion1'	# Accept minion1 public key
+salt-key -A 	# Accept ALL public keys
+salt-key -r		# Reject a public key
+salt-key -R		# Reject ALL public keys
+salt-key -p		# Print the specified public key
+salt-key -P		# Print all public keys
+salt-key -d 'minion1' # Delete minion1 public key
+salt-key -D 	# Delete ALL public keys
+salt-key -f master # Get the public signature for your local master
+```
