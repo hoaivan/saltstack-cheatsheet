@@ -162,15 +162,15 @@ The `pki_dir` is a configurable directory on `/etc/salt/pki/minion/`. The `minio
 * `minions_rejected` keys which have been rejected
 
 ```
-salt-key -l 	# List the public keys
-salt-key -L 	# List all public keys 
+salt-key -l 	        # List the public keys
+salt-key -L 	        # List all public keys 
 salt-key -a 'minion1'	# Accept minion1 public key
-salt-key -A 	# Accept ALL public keys
-salt-key -r		# Reject a public key
-salt-key -R		# Reject ALL public keys
-salt-key -p		# Print the specified public key
-salt-key -P		# Print all public keys
+salt-key -A 	        # Accept ALL public keys
+salt-key -r	        	# Reject a public key
+salt-key -R		        # Reject ALL public keys
+salt-key -p		        # Print the specified public key
+salt-key -P		        # Print all public keys
 salt-key -d 'minion1' # Delete minion1 public key
-salt-key -D 	# Delete ALL public keys
-salt-key -f master # Get the public signature for your local master
+salt-key -D 	        # Delete ALL public keys
+salt-key -f master    # Get the public signature for your local master
 ```
