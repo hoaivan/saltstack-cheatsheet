@@ -31,7 +31,7 @@ In order to run, Salt needs to keep open the following communication ports
 iptables -A INPUT -m state --state new -m tcp -p tcp --dport 4505 -j ACCEPT
 iptables -A INPUT -m state --state new -m tcp -p tcp --dport 4506 -j ACCEPT
 ```
-Persist across system restart
+Persist across system restarts
 ```
 iptables-save > /etc/iptables.rules
 ```
