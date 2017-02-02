@@ -174,6 +174,24 @@ salt '*' pkg.install bash refresh=True  # install or upgrade bash package but
                                         # refresh the package database before installing.
 ```
 
+### Programming languages specific packages
+#### Using PIP
+```
+salt '*' pip.install <package name>,<package2 name> # Installs packages based on a list using PIP
+salt '*' pip.list salt                              # Display matching package
+salt '*' pip.upgrade                                # Upgrade outdated PIP packages
+salt '*' pip.uninstall <package name>               # Uninstall matching package
+```
+#### Using NPM
+```
+salt '*' npm.install coffee-script                  # Installs package using NPM
+salt '*' npm.install coffee-script@1.0.1            # Installs a specific version
+salt '*' npm.list                                   # List installed packages
+salt '*' npm.uninstall  coffee-script               # Uninstall a package
+salt '*' npm.cache_clean                            # Clean NPM cache
+```
+
+
 ## Check status of a service and manipulate services
 ```
 salt '*' service.status <service name>
