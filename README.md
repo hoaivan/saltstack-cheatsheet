@@ -7,6 +7,11 @@ This list is partly inspired by the fine lists on:
 # Documentation
 This is important because the help system is very good.
 
+## Networking
+In order to run, Salt needs to keep open the following communication ports
+* Job publisher port on TCP 4505 port. 
+* An open TCP 4506 port to minion's return.
+
 ## Documentation on the system
 ```
 salt '*' sys.doc         # output sys.doc (= all documentation)
