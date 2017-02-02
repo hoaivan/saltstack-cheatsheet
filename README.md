@@ -95,13 +95,14 @@ Some stuff that is specifically of interest for sysadmins.
 salt 'minion-x-*' cmd.run 'command'   # Run command on minions
 salt 'minion-x-*' system.reboot       # Let's reboot all the minions that match minion-x-*
 salt '*' status.uptime                # Get the uptime of all our minions
+```
+Or work with process and check filesystems
+```
 salt '*' ps.disk_usage /home	        # Print disk usage for /home partition
 salt '*' ps.disk_partitions		        # Return a list of disk partitions and their device, mount point, and filesystem type.
 salt '*' ps.get_users			            # Return logged users
 salt 'minion' ps.kill_pid pid [signal=signal_number] # Send kill signal to an specific PID
 salt '*' ps.psaux www-data.+apache2	  # Return process matching with the string
-
-
 ```
 
 ## Packages
