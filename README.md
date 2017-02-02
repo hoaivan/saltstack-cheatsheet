@@ -35,13 +35,18 @@ salt '*' test.ping      # Use test module to check if minion is up and respondin
 ```
 
 ## Target minion with state files
-Apply a specific state file to a (group of..) minion(s). Do not use the .sls extension. (just like in the state files!)
-
+Look at the SLS files
 ```
-salt 'minion1' state.highstate			    # Apply hihgstate over matching minions
 salt 'minion1' state.show_sls some_sls	# Parse and show SLS file
+```
+Apply a specific state file to a (group of..) minion(s). Do not use the .sls extension. (just like in the state files!)
+```
 salt '*' state.sls mystatefile          # mystatefile.sls will be applied to *
 salt 'minion1' state.sls prod.somefile  # prod/somefile.sls will be applied to minion1
+```
+Or bring the specified target to the *highstate*
+```
+salt 'minion1' state.highstate          # Apply hihgstate over matching minions
 ```
 
 ## Grains
