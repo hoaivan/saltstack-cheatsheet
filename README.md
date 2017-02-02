@@ -45,8 +45,19 @@ You can also use several commands to check if minions are alive and kicking but 
 salt-run manage.status  # What is the status of all my minions? (both up and down)
 salt-run manage.up      # Any minions that are up?
 salt-run manage.down    # Any minions that are down?
+salt '*' test.version   # Display salt version
 salt '*' test.ping      # Use test module to check if minion is up and responding.
                         # (Not an ICMP ping!)
+```
+## Matching
+There are many different ways to match with a minion, some of them are presented here
+```
+salt \* test.ping                 # Match all minions
+salt \*.example.com test.ping     # Match all minions in the example.com domain
+salt 'db[1-3]' test.ping          # Match the DB1 throught DB3 servers
+salt -E 'db1-(dev|qa)' test.ping  # Match db1 server for both DEV and QA based on a regexp
+salt -L 'db1, web[1-2]'           # Match based on a list
+salt -G os:CentOS test.ping       # Match based on a grain (in this case the OS)
 ```
 
 ## Target minion with state files
@@ -113,14 +124,36 @@ salt-run jobs.lookup_jid <job id number>  # get details of this specific job
 # Sysadmin specific
 Some stuff that is specifically of interest for sysadmins.
 
+### Salt file server
+```
+salt 'web\*' cp.get_file salt://nginx/nginx.conf /etc/nginx/nginx.conf      # Copy nginx.conf to all web* matching
+salt 'web01' cp.get_file_str /etc/nginx/nginx.conf                          # Displays the content of nginx.conf
+salt 'web01' cp.get_template salt://nginx/nginx.conf /etc/nginx/nginx.conf  # Similar to get_file but execute the templating system
+salt 'web01' cp.get_dir salt://etc/nginx/ /etc/nginx/                       # Copy a directory of files from master to minion
+```
+
+## Managing users and groups
+```
+salt '*' user.add tty0 groups=sudos,dialout # Creates tty0 user and add it to sudo and dialout group
+salt '*' group.add webmasters               # Creates webmaster group
+salt '*' user.info tty0                     # Individual user information
+salt '*' user.list_users                    # List users on systems
+```
+
+## Running commands
+```
+salt '*' cmd.run 'dmesg'              # Run a command on the minions
+salt '*' cmd.script '/tmp/script.sh'  # Execute a script on the minion and return the output
+```
+
 ## System and status
 ```
-salt 'minion-x-*' cmd.run 'command'   # Run command on minions
 salt 'minion-x-*' system.reboot       # Let's reboot all the minions that match minion-x-*
 salt '*' status.uptime                # Get the uptime of all our minions
 ```
 Or work with process and check filesystems
 ```
+salt '*' ps.num_cpus                  # List number of CPU in the minion
 salt '*' ps.disk_usage /home	        # Print disk usage for /home partition
 salt '*' ps.disk_partitions		        # Return a list of disk partitions and their device, mount point, and filesystem type.
 salt '*' ps.get_users			            # Return logged users
@@ -132,6 +165,7 @@ salt '*' ps.psaux www-data.+apache2	  # Return process matching with the string
 ```
 salt '*' pkg.list_upgrades              # get a list of packages that need to be upgrade
 salt '*' pkg.upgrade                    # Upgrades all packages via apt-get dist-upgrade (or similar)
+salt '*' pkg.lig_pkgs                   # List all installed packages
 
 salt '*' pkg.version bash               # get current version of the bash package
 salt '*' pkg.install bash               # install or upgrade bash package
@@ -155,6 +189,7 @@ salt '*' service.disable <service name>
 Do some network stuff on your minions.
 
 ```
+salt 'minion1' network.arp                      # Get the ARP table
 salt 'minion1' network.ip_addrs                 # Get IP of your minion
 salt 'minion1' network.ping <hostname>          # Ping a host from your minion
 salt 'minion1' network.traceroute <hostname>    # Traceroute a host from your minion
