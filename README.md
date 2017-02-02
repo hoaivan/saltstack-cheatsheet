@@ -4,9 +4,6 @@ This list is partly inspired by the fine lists on:
 * http://www.xenuser.org/saltstack-cheat-sheet/
 * https://github.com/saltstack/salt/wiki/Cheat-Sheet
 
-# Documentation
-This is important because the help system is very good.
-
 ## Networking
 In order to run, Salt needs to keep open the following communication ports
 * Job publisher port on TCP 4505 port. 
@@ -21,6 +18,8 @@ Persist across system restart
 ```
 iptables-save > /etc/iptables.rules
 ```
+
+# Dive into documentation
 
 ## Documentation on the system
 ```
