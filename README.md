@@ -146,6 +146,14 @@ salt '*' cmd.run 'dmesg'              # Run a command on the minions
 salt '*' cmd.script '/tmp/script.sh'  # Execute a script on the minion and return the output
 ```
 
+## NGINX specfic commands
+```
+salt '*' nginx.configtest     # Test configuration syntax
+salt '*' nginx.signal reload  # Reload NGINX configuration sending a SIGNHUP
+salt '*' nginx.status         # Print NGINX status
+salt '*' nginx.version        # Pritn NGINX version
+```
+
 ## System and status
 ```
 salt 'minion-x-*' system.reboot       # Let's reboot all the minions that match minion-x-*
