@@ -242,3 +242,21 @@ salt-key -d 'minion1' # Delete minion1 public key
 salt-key -D 	        # Delete ALL public keys
 salt-key -f master    # Get the public signature for your local master
 ```
+# SPM
+
+The Salt formulas repository:
+* https://github.com/saltstack-formulas
+
+```
+spm install apache      # Install the apache formula
+spm remove apache       # Remove apache formula
+```
+Installing a local formula
+```
+spm local install /srv/spm/apache-201506-1.spm
+```
+After repository configuration, you need to update the metadata placed on `/var/cache/salt/spm`
+```
+spm update_repo
+```
+SPM logs are placed on `/var/log/salt/spm` directory and the database who store the packages installed on the system is on `/var/cache/salt/spm/packages.db`.
