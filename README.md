@@ -1,5 +1,5 @@
 # SaltStack Cheat Sheet
-![https://awesome.re/badge.svg](https://github.com/hbokh/awesome-saltstack)
+[![Awesome](https://awesome.re/badge.svg)](https://github.com/hbokh/awesome-saltstack)
 
 This list is partly inspired by the fine lists on:
 * http://www.xenuser.org/saltstack-cheat-sheet/
