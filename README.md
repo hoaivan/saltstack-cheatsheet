@@ -1,4 +1,4 @@
-# SaltStack Cheat Sheet
+# SaltStack Cheat Sheet (https://awesome.re/badge.svg)](https://github.com/hbokh/awesome-saltstack)
 
 This list is partly inspired by the fine lists on:
 * http://www.xenuser.org/saltstack-cheat-sheet/
@@ -105,9 +105,10 @@ salt 'minion1' grains.delval mygrain       # Delete the value of the grain
 ## Pillars
 Look at pillars and get values
 ```
-salt 'minion1' pillar.get pillar        # Get pillar
-salt 'minion1' pillar.item pillar       # Print pillar items
-salt 'minion1' pillar.ls                # Show available main keys
+salt 'minion1' pillar.get pillar              # Get pillar
+salt 'minion1' pillar.get pkg:apache:version  # Get an specific pillar
+salt 'minion1' pillar.item pillar             # Print pillar items
+salt 'minion1' pillar.ls                      # Show available main keys
 
 salt '*' pillar.get pkg:apache          # Show pkg:apache pillar
 salt '*' pillar.file_exists foo/bar.sls # Return true if pillar file exist
@@ -153,6 +154,27 @@ salt '*' nginx.configtest     # Test configuration syntax
 salt '*' nginx.signal reload  # Reload NGINX configuration sending a SIGNHUP
 salt '*' nginx.status         # Print NGINX status
 salt '*' nginx.version        # Pritn NGINX version
+```
+
+## MYSQL specific commands
+```
+salt 'minion1' mysql.db_create 'dbname'                            # Create DB
+salt 'minion1' mysql.db_exists 'dbname'                            # Check if DB exists
+salt 'minion1' mysql.db_list                                       # Return a list of databases
+salt 'minion1' mysql.db_remove 'dbname'                            # Remove dbname
+salt 'minion1' mysql.db_tables 'database'                          # List tables in a given database
+salt 'minion1' mysql.file_query mydb file_name=salt://sqlfile.sql` # Load queries from a given file
+salt 'minion1' mysql.file_query mydb file_name=/tmp/sqlfile.sql    # Load queries from a given local file
+salt 'minion1' mysql.get_master_status                             # Gets master status
+salt 'minion1' mysql.get_slave_status                              # Gets slave status
+salt 'minion1' mysql.showvariables                                 # Show MySQL variables
+salt 'minion1' mysql.slave_lag                                     # Show replication lag
+salt 'minion1' mysql.status                                        # Show MySQL status
+salt '*' mysql.query mydb "UPDATE mytable set myfield=1 limit 1".  # Executes a query
+salt '*' mysql.user_create 'username' 'hostname' 'password'        # Creates MySQL user
+salt '*' mysql.user_info root localhost                            # Display user info
+salt '*' mysql.user_list                                           # List MySQL users
+salt '*' mysql.user_remove frank localhost                         # Remove MySQL user
 ```
 
 ## System and status
@@ -213,7 +235,6 @@ salt '*' service.disable <service name>
 ```
 
 ## Network
-
 Do some network stuff on your minions.
 
 ```
@@ -224,6 +245,10 @@ salt 'minion1' network.traceroute <hostname>    # Traceroute a host from your mi
 salt 'minion1' network.get_hostname             # Get hostname
 salt 'minion1' network.mod_hostname             # Modify hostname
 ```
+# Logs
+* `/var/log/salt/master`
+* `/var/log/salt/minion`
+* `/var/log/messages` or `/var/log/syslog`
 
 # Salt Cloud
 Salt Cloud is used to provision virtual machines in the cloud. (surprise!) (http://docs.saltstack.com/en/latest/topics/cloud/)
