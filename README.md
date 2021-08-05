@@ -14,7 +14,9 @@ salt '*' sys.doc pkg     # only sys.doc for pkg module
 salt '*' sys.doc network # only sys.doc for network module
 salt '*' sys.doc system  # only sys.doc for system module
 salt '*' sys.doc status  # only sys.doc for status module
+salt '*' sys.list_modules
 ```
+
 
 ## Documentation on the web
 - SaltStack documentation: http://docs.saltstack.com/en/latest/
