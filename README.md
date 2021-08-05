@@ -7,6 +7,9 @@ This list is partly inspired by the fine lists on:
 
 # Dive into documentation
 
+## Module development
+- `salt '*' saltutil.sync_all`
+
 ## Documentation on the system
 ```
 salt '*' sys.doc         # output sys.doc (= all documentation)
